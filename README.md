@@ -51,4 +51,4 @@ flake8 .
 ```
 
 ## Have fun
-[Kuba](https://suki.wtf)
+[Kuba](https://www.suki.wtf)
