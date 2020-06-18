@@ -24,6 +24,10 @@ def main():
         print(f"Provided input is not a number: {count}")
         return 1
 
+    if count == 0:
+        print(0)
+        return 0
+
     for i in range(count):
         rectangle = Rectangle(get_input(">> "))
         for rec in rectangles.values():
