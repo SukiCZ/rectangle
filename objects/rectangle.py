@@ -10,6 +10,8 @@ class Rectangle:
             self.bottom = decimal.Decimal(string[1])
             self.right = decimal.Decimal(string[2])
             self.top = decimal.Decimal(string[3])
+            if self.bottom > self.top or self.left > self.right:
+                raise ValueError("Rectangle is invalid")
         except decimal.InvalidOperation as e:
             raise ValueError(f"Provided input is not a number, {e}")
 
@@ -42,4 +44,9 @@ class Rectangle:
             self.bottom < other.bottom,
             self.right > other.right,
             self.top > other.top,
+        ]) or all([
+            other.left < self.left,
+            other.bottom < self.bottom,
+            other.right > self.right,
+            other.top > self.top,
         ])
