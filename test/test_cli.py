@@ -13,18 +13,6 @@ class TestCli(unittest.TestCase):
         self.assertEqual(0, result)
         self.assertEqual(mocked_stdout.getvalue(), "1\n")
 
-    @patch('cli.args.verbose', True)
-    @patch('cli.get_input')
-    @patch('sys.stdout', new_callable=StringIO)
-    def test_two_rectangles_inside_verbose(self, mocked_stdout, mocked_input):
-        mocked_input.side_effect = ['2', '0 0 10 10', '1 1 9 9']
-        result = main()
-        self.assertEqual(0, result)
-        self.assertEqual(
-            mocked_stdout.getvalue(),
-            "1\nRectangle((Decimal('0'), Decimal('0'))(Decimal('10'), Decimal('10')))\n"
-        )
-
     @patch('cli.get_input')
     @patch('sys.stdout', new_callable=StringIO)
     def test_two_same_rectangles_are_overlapping(self, mocked_stdout, mocked_input):
@@ -44,7 +32,7 @@ class TestCli(unittest.TestCase):
         mocked_input.side_effect = ['2', '2.0 3.5 3.0 4.5', '2.0 2.0 3.0 3.0']
         result = main()
         self.assertEqual(0, result)
-        self.assertEqual(mocked_stdout.getvalue(), "0\n")
+        self.assertEqual(mocked_stdout.getvalue(), "2\n")
 
     @patch('cli.get_input')
     @patch('sys.stdout', new_callable=StringIO)
@@ -103,7 +91,7 @@ class TestCli(unittest.TestCase):
         ]
         result = main()
         self.assertEqual(0, result)
-        self.assertEqual(mocked_stdout.getvalue(), "3\n")
+        self.assertEqual(mocked_stdout.getvalue(), "4\n")
 
     @patch('cli.get_input')
     @patch('sys.stdout', new_callable=StringIO)
@@ -125,7 +113,7 @@ class TestCli(unittest.TestCase):
         ]
         result = main()
         self.assertEqual(0, result)
-        self.assertEqual(mocked_stdout.getvalue(), "3\n")
+        self.assertEqual(mocked_stdout.getvalue(), "2\n")
 
     @patch('cli.get_input')
     @patch('sys.stdout', new_callable=StringIO)

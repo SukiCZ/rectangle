@@ -18,14 +18,6 @@ class Rectangle:
     def __str__(self):
         return f"Rectangle({self.left, self.bottom}{self.right, self.top})"
 
-    def __eq__(self, other):
-        return all([
-            self.left == other.left,
-            self.bottom == other.bottom,
-            self.right == other.right,
-            self.top == other.top,
-        ])
-
     def do_overlap(self, other):
         # If one rectangle is on left side of other
         if self.left > other.right or self.right < other.left:
@@ -37,8 +29,8 @@ class Rectangle:
 
         return not self.has_inside(other)
 
-    def has_inside(self, other):
-        # If one rectangle is inside of another
+    def has_inside(self, other: "Rectangle", active_node=None):
+
         return all([
             self.left < other.left,
             self.bottom < other.bottom,
